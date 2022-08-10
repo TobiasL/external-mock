@@ -1,14 +1,18 @@
 import express from 'express'
+import http from 'http'
 
 const externalMocks: ExternalMock[] = []
 
-class ExternalResponse {
-  app: any
-  method: string
-  route: string
-  spyFn?: (payload: any) => void
+type RequestVerbs = 'get' | 'post' | 'put' | 'patch' | 'delete'
+type Payload = any // eslint-disable-line
 
-  constructor(app: any, method: string, route: string) {
+class ExternalResponse {
+  app: express.Application
+  method: RequestVerbs
+  route: string
+  spyFn?: (payload: Payload) => void
+
+  constructor(app: express.Application, method: RequestVerbs, route: string) {
     this.app = app
     this.method = method
     this.route = route
@@ -16,14 +20,14 @@ class ExternalResponse {
     this.spyFn = undefined
   }
 
-  spy(fn: (payload: any) => void) {
+  spy(fn: (payload: Payload) => void) {
     this.spyFn = fn
 
     return this
   }
 
-  reply(code: number, body: any) {
-    this.app[this.method](this.route, (req: any, res: any) => {
+  reply(code: number, body: Payload) {
+    this.app[this.method](this.route, (req: express.Request, res: express.Response) => {
       if (this.spyFn) {
         this.spyFn(req.body)
       }
@@ -38,8 +42,8 @@ class ExternalResponse {
 }
 
 class ExternalMock {
-  app: any
-  server: any
+  app: express.Application
+  server: http.Server
 
   constructor(port: number) {
     this.app = express()
