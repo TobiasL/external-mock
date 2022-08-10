@@ -1,0 +1,18 @@
+{
+  "name": "external-mock",
+  "version": "0.0.1",
+  "description": "Mock external REST APIs that we don't have control over in an integration test scenario",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Tobias Lindström",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.27.2",
+    "express": "4.18.1"
+  },
+  "devDependencies": {
+    "jest": "28.1.3"
+  }
+}
