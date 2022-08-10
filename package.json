@@ -4,13 +4,35 @@
   "description": "Mock external REST APIs that we don't have control over in an integration test scenario",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
     "build": "tsc"
   },
-  "author": "Tobias Lindström",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TobiasL/external-mock.git"
+  },
   "license": "MIT",
+  "author": {
+    "name": "Tobias Lindström",
+    "email": "me@tobiaslindstrom.se"
+  },
+  "engines": {
+    "node": ">=12.0"
+  },
+  "keywords": [
+    "integration",
+    "mock",
+    "e2e"
+  ],
+  "bugs": {
+    "url": "https://github.com/TobiasL/external-mock/issues"
+  },
+  "homepage": "https://github.com/TobiasL/external-mock#readme",
   "dependencies": {
     "express": "^4.18.1"
   },
