@@ -15,14 +15,14 @@ Wiremock is a commonly used alternative if you want to run another process.
 ## Example usage
 
 ```javascript
-const externalMock = require('external-mock')
+const { createMock, cleanExternalMocks } = require('external-mock')
 
-afterEach(() => externalMock.clean())
+afterEach(() => cleanExternalMocks())
 
 it('Slack hook is used', async () => {
   const slackHook = jest.fn()
 
-  const fakeSlackServer = externalMock.listen(5555)
+  const fakeSlackServer = createMock(5555)
 
   fakeSlackServer
     .post('/message')
@@ -31,19 +31,17 @@ it('Slack hook is used', async () => {
 
   await makeOurServiceCallSlack()
 
-  expect(slackHook).toBeCalledWith({
-    text: 'Temp'
-  })
+  expect(slackHook).toBeCalledWith({ text: 'Temp' })
 })
 
 ```
 
 ## API
 
-### `listen(port: integer)`
+### `createMock(port: number)`
 
 **Returns: `ExternalMock`**
 
-### `clean()`
+### `cleanExternalMocks()`
 
 **Returns: `void`**

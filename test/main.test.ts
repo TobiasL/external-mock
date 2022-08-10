@@ -1,13 +1,13 @@
-const axios = require('axios')
+import axios from 'axios'
 
-const externalMock = require('../index')
+import { createMock, cleanExternalMocks } from '../src/index'
 
-afterEach(() => externalMock.clean())
+afterEach(() => cleanExternalMocks())
 
 it('Mock a POST route and verify that it\'s called with the correct payload', async () => {
   const slackHook = jest.fn()
 
-  const fakeSlackServer = externalMock.listen(5555)
+  const fakeSlackServer = createMock(5555)
 
   fakeSlackServer.post('/message').spy(slackHook).reply(200, { sent: true })
 

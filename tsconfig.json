@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "types": [
+      "jest"
+    ],
+    "outDir": "dist",
+    "module": "commonjs",
+    "declaration": true,
+    "pretty": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "./src/"
+  ]
+}
