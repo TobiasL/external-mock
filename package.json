@@ -1,6 +1,6 @@
 {
   "name": "external-mock",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Mock external REST APIs that we don't have control over in an integration test scenario",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
