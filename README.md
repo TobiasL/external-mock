@@ -16,7 +16,17 @@ If you need to mock requests from the same process use the [Jest mock](https://j
 
 ## Install
 
-`npm install external-mock`
+Using npm:
+
+```bash
+$ npm install --save-dev external-mock
+```
+
+Using yarn:
+
+```bash
+$ yarn add --dev external-mock
+```
 
 ## Example usage
 
@@ -25,7 +35,7 @@ const { createMock, cleanExternalMocks } = require('external-mock')
 
 afterEach(() => cleanExternalMocks())
 
-it('Slack hook is used', async () => {
+test('Slack hook is used', async () => {
   const slackHook = jest.fn()
 
   const fakeSlackServer = createMock(5555)
