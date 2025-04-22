@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/TobiasL/external-mock/workflows/Test%20and%20lint/badge.svg)](https://github.com/TobiasL/external-mock/actions)
 [![Available on NPM](https://img.shields.io/npm/v/external-mock.svg)](https://npmjs.com/package/external-mock)
 
-*Mock external REST APIs that we don't have control over in an integration test scenario.*
+_Mock external REST APIs that we don't have control over in an integration test scenario._
 
 ## About
 
@@ -31,25 +31,24 @@ $ yarn add --dev external-mock
 ## Example usage
 
 ```javascript
-const { createMock, cleanExternalMocks } = require('external-mock')
+const { createMock, cleanExternalMocks } = require("external-mock");
 
-afterEach(() => cleanExternalMocks())
+afterEach(() => cleanExternalMocks());
 
-test('Slack hook is used', async () => {
-  const slackHook = jest.fn()
+test("Slack hook is used", async () => {
+  const slackHook = jest.fn();
 
-  const fakeSlackServer = createMock(5555)
+  const fakeSlackServer = createMock(5555);
 
   fakeSlackServer
-    .post('/message')
+    .post("/message")
     .spy(slackHook)
-    .reply(200, { text: 'Hello World' })
+    .reply(200, { text: "Hello World" });
 
-  await makeOurServiceCallSlack()
+  await makeOurServiceCallSlack();
 
-  expect(slackHook).toBeCalledWith({ text: 'Temp' })
-})
-
+  expect(slackHook).toBeCalledWith({ text: "Temp" });
+});
 ```
 
 ## API
