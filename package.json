@@ -1,53 +1,41 @@
 {
-  "name": "external-mock",
-  "version": "0.2.0",
-  "description": "Mock external REST APIs that we don't have control over in an integration test scenario",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**/*"
-  ],
-  "scripts": {
-    "test": "jest",
-    "lint": "eslint .",
-    "build": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TobiasL/external-mock.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Tobias Lindström",
-    "email": "me@tobiaslindstrom.se"
-  },
-  "engines": {
-    "node": ">=18.0"
-  },
-  "keywords": [
-    "integration",
-    "mock",
-    "e2e"
-  ],
-  "bugs": {
-    "url": "https://github.com/TobiasL/external-mock/issues"
-  },
-  "homepage": "https://github.com/TobiasL/external-mock#readme",
-  "dependencies": {
-    "express": "^5.1.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "9.25.1",
-    "@types/express": "5.0.1",
-    "@types/jest": "29.5.14",
-    "eslint": "9.25.1",
-    "jest": "29.7.0",
-    "ts-jest": "29.3.2",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.31.0"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
-  }
+	"name": "external-mock",
+	"version": "0.2.1",
+	"description": "Mock external REST APIs that we don't have control over in an integration test scenario",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": ["dist/**/*"],
+	"scripts": {
+		"test": "vitest",
+		"lint": "biome check --write",
+		"build": "tsc",
+		"ci": "biome ci"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TobiasL/external-mock.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Tobias Lindström",
+		"email": "me@tobiaslindstrom.se"
+	},
+	"engines": {
+		"node": ">=18.0"
+	},
+	"keywords": ["integration", "mock", "e2e"],
+	"bugs": {
+		"url": "https://github.com/TobiasL/external-mock/issues"
+	},
+	"homepage": "https://github.com/TobiasL/external-mock#readme",
+	"dependencies": {
+		"express": "^5.1.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/express": "5.0.1",
+		"typescript": "5.8.3",
+		"typescript-eslint": "8.31.0",
+		"vitest": "3.1.2"
+	}
 }

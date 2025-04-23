@@ -1,3 +1,17 @@
-node_modules
-dist
+# Logs
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# macOS files
 .DS_Store
+
+# Build output
+dist/
