@@ -1,83 +1,84 @@
+import type http from "node:http";
 import express from "express";
-import http from "http";
 
 type RequestVerbs = "get" | "post" | "put" | "patch" | "delete";
-type Payload = any; // eslint-disable-line
+// biome-ignore lint/suspicious/noExplicitAny:
+type Payload = any;
 
 class ExternalResponse {
-  app: express.Application;
-  method: RequestVerbs;
-  route: string;
-  spyFn?: (payload: Payload) => void;
+	app: express.Application;
+	method: RequestVerbs;
+	route: string;
+	spyFn?: (payload: Payload) => void;
 
-  constructor(app: express.Application, method: RequestVerbs, route: string) {
-    this.app = app;
-    this.method = method;
-    this.route = route;
+	constructor(app: express.Application, method: RequestVerbs, route: string) {
+		this.app = app;
+		this.method = method;
+		this.route = route;
 
-    this.spyFn = undefined;
-  }
+		this.spyFn = undefined;
+	}
 
-  spy(fn: (payload: Payload) => void) {
-    this.spyFn = fn;
+	spy(fn: (payload: Payload) => void) {
+		this.spyFn = fn;
 
-    return this;
-  }
+		return this;
+	}
 
-  reply(code: number, body: Payload) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-    (this.app[this.method] as Function)(
-      this.route,
-      (req: express.Request, res: express.Response) => {
-        if (this.spyFn) {
-          this.spyFn(req.body);
-        }
+	reply(code: number, body: Payload) {
+		// biome-ignore lint/complexity/noBannedTypes:
+		(this.app[this.method] as Function)(
+			this.route,
+			(req: express.Request, res: express.Response) => {
+				if (this.spyFn) {
+					this.spyFn(req.body);
+				}
 
-        if (!body) {
-          return res.sendStatus(code);
-        }
+				if (!body) {
+					return res.sendStatus(code);
+				}
 
-        return res.status(code).send(body);
-      },
-    );
-  }
+				return res.status(code).send(body);
+			},
+		);
+	}
 }
 
 class ExternalMock {
-  app: express.Application;
-  server: http.Server;
+	app: express.Application;
+	server: http.Server;
 
-  constructor(port: number) {
-    this.app = express();
+	constructor(port: number) {
+		this.app = express();
 
-    this.app.use(express.json());
+		this.app.use(express.json());
 
-    this.server = this.app.listen(port);
-  }
+		this.server = this.app.listen(port);
+	}
 
-  close() {
-    this.server.close();
-  }
+	close() {
+		this.server.close();
+	}
 
-  get(route: string) {
-    return new ExternalResponse(this.app, "get", route);
-  }
+	get(route: string) {
+		return new ExternalResponse(this.app, "get", route);
+	}
 
-  post(route: string) {
-    return new ExternalResponse(this.app, "post", route);
-  }
+	post(route: string) {
+		return new ExternalResponse(this.app, "post", route);
+	}
 
-  put(route: string) {
-    return new ExternalResponse(this.app, "put", route);
-  }
+	put(route: string) {
+		return new ExternalResponse(this.app, "put", route);
+	}
 
-  patch(route: string) {
-    return new ExternalResponse(this.app, "patch", route);
-  }
+	patch(route: string) {
+		return new ExternalResponse(this.app, "patch", route);
+	}
 
-  delete(route: string) {
-    return new ExternalResponse(this.app, "delete", route);
-  }
+	delete(route: string) {
+		return new ExternalResponse(this.app, "delete", route);
+	}
 }
 
 export default ExternalMock;

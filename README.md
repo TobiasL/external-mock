@@ -22,12 +22,6 @@ Using npm:
 $ npm install --save-dev external-mock
 ```
 
-Using yarn:
-
-```bash
-$ yarn add --dev external-mock
-```
-
 ## Example usage
 
 ```javascript

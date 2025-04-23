@@ -1,16 +1,15 @@
 {
-  "compilerOptions": {
-    "types": ["jest"],
-    "outDir": "dist",
-    "module": "commonjs",
-    "declaration": true,
-    "pretty": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
-  },
-  "include": ["./src/"]
+	"compilerOptions": {
+		"outDir": "dist",
+		"module": "commonjs",
+		"declaration": true,
+		"pretty": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true
+	},
+	"include": ["./src/"]
 }

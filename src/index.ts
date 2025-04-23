@@ -3,13 +3,15 @@ import ExternalMock from "./ExternalMock";
 const externalMocks: ExternalMock[] = [];
 
 export const createMock = (port: number) => {
-  const externalMock = new ExternalMock(port);
+	const externalMock = new ExternalMock(port);
 
-  externalMocks.push(externalMock);
+	externalMocks.push(externalMock);
 
-  return externalMock;
+	return externalMock;
 };
 
 export const cleanExternalMocks = () => {
-  externalMocks.forEach((server) => server.close());
+	for (const server of externalMocks) {
+		server.close();
+	}
 };
